@@ -18,8 +18,8 @@ git clone https://github.com/chatrjr/sass-zindex.git
 
 Or grab the tarball/zipfile.
 
-[Tarball][TB] 
-[Zip][Z]
++ [Tarball][TB] 
++ [Zip][Z]
 
 Next import Zindex into your project.
 
