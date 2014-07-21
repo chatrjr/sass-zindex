@@ -16,7 +16,7 @@ Before anything else, clone the repo into your project's Sass directory.
 git clone https://github.com/chatrjr/sass-zindex.git
 ```
 
-Or grab the tarball/zipfile.
+Or grab the tarball/zipball.
 
 + [Tarball][TB] 
 + [Zip][Z]
@@ -38,6 +38,6 @@ To get started using Zindex, [check out the example file][EX] in the repo. If li
 [PW]: http://philipwalton.com/articles/what-no-one-told-you-about-z-index/ "What No One Told You About Z-Index"
 [CC]: http://css-tricks.com/handling-z-index/ "Handling z-index"
 [TB]: https://github.com/chatrjr/sass-zindex/tarball/master "Zindex Tarball"
-[Z]: https://github.com/chatrjr/sass-zindex/zipfile/master "Zindex Zip"
+[Z]: https://github.com/chatrjr/sass-zindex/zipball/master "Zindex Zip"
 [EX]: https://github.com/chatrjr/sass-zindex/blob/master/zindex-example.scss "Zindex Usage Examples"
 [CP]: http://codepen.io/chatrjr/pen/JrLIt "Zindex Test Cases"
