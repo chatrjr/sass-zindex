@@ -1,0 +1,49 @@
+// Import the library and you're good to go.
+@import "zindex";
+
+// Then...
+
+// /* Set the context
+// ----------------------------------------------------
+// Set a variable for Zindex to recognize a stacking 
+// context to be generated.
+// ----------------------------------------------------
+// Note: If $root is set to "body", Zindex will assume
+// a document-level context and output generic helpers.
+// ================================================== */
+
+$ctx-a: zindex-set-stack-for(ctx-a, 4, 1);
+$ctx-b: zindex-set-stack-for(ctx-b, 4, 2);
+$ctx-c: zindex-set-stack-for(ctx-c, 4, 3);
+$ctx-body: zindex-set-stack-for(body, 4, 3);
+
+
+/* Generate classes
+--------------------------------------------------------
+@include zindex-generate-stack($zindex-map) will generate 
+a set of classes you can place in your markup or @extend
+to move within your set stack context.
+--------------------------------------------------------
+Note: the class method is beneficial for most use cases 
+when you only need a shallow range of depth.
+======================================================== */
+
+@include zindex-generate-stack($ctx-a);
+@include zindex-generate-stack($ctx-b);
+
+// Or...
+
+/* Generate placeholders
+----------------------------------------------------------------
+@include zindex-generate-stack($zindex-map ,$placehold=true) 
+will generate a set of placeholders that only attach a z-index 
+when needed. Just use the @extend directive in your declarations.
+----------------------------------------------------------------
+Note: the extend method would help in cases where you're 
+not quite sure how much layering you'll need. As a downside, 
+collisions become much more likely. It's vulnerable to the 
+same organization problems as hardcoded values.
+============================================================= */
+
+@include zindex-generate-stack($ctx-c, true);
+@include zindex-generate-stack($ctx-body);

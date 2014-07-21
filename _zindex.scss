@@ -1,0 +1,108 @@
+// Inspired by Jackie Balzer's Smashing Mag post on the subject.
+// (http://www.smashingmagazine.com/2014/06/12/sassy-z-index-management-for-complex-layouts/)
+
+// /* Zindex
+// ----------------------------------------------------
+// Z-index organization and stack traversal without
+// going over 9000 levels deep. It came from a need
+// to automate my own z-index usage habits, but I
+// figured maybe others could use it too. If you do,
+// I'd appreciate attribution.
+// ----------------------------------------------------
+// Note: The step approach allows some breathing room
+// between layers, which can be handy if you need to set
+// a hard value later. If, for example, you're stepping
+// over layers by 5, make sure your explicit value isn't
+// a multiple of 5.
+// ----------------------------------------------------
+// Author: Chatman Richmond Jr.
+// Date: 2014 Jul 16
+// License: MIT
+// Sass Version: 3.3.x
+// ==================================================== */
+
+// BEGIN Library Source
+// =============================================================================
+
+// /* @function zindex-set-stack-for
+// ------------------------------------------------
+// The main function of zindex that creates a stack 
+// context based on a component in your interface.
+// ------------------------------------------------
+// $root | The name of the root element to anchor a
+// stacking context.
+//
+// $depth-limit | How deep you want you want the 
+// context to run.
+//
+// $step | How many indexes you want to step over (to 
+// avoid collison).
+// ============================================= */
+
+@function zindex-set-stack-for($root, $depth-limit, $step) {
+  $root-id: (context: $root);
+  $map: ();
+
+  @if $root == body {
+    @for $enum from $depth-limit through 1 {
+      $map: map-merge($map ,("zindex-sublevel-#{$enum}": -($step * $enum)));
+    }
+
+    @for $enum from 1 through $depth-limit {
+      $map: map-merge($map ,("zindex-level-#{$enum}": $step * $enum));
+    }
+  } @else {
+    @for $enum from $depth-limit through 1 {
+      $map: map-merge($map ,("#{$root}-sublevel-#{$enum}": -($step * $enum)));
+    }
+
+    @for $enum from 1 through $depth-limit {
+      $map: map-merge($map ,("#{$root}-level-#{$enum}": $step * $enum));
+    }
+  }
+  $map: map-merge($root-id, $map);
+  @return $map;
+}
+
+// /* @mixin zindex-generate-stack
+// ----------------------------------------------
+// Generates a set of utility classes anchored to
+// context map passed in as CSS classes or Sass
+// placeholders.
+// ----------------------------------------------
+// $zindex-map | Your generated map.
+// 
+// $placehold | Set true to generate placeholders
+// (%foo) instead of classes.
+// =========================================== */
+
+@mixin zindex-generate-stack($zindex-map, $placehold: false) {
+  @if $placehold {
+    @each $level, $depth in $zindex-map {
+      @if $level  == "context" {
+        /*=====================\
+        |  #{map-get($zindex-map, $level)} z-index map 
+        \*====================*/
+        } @else {
+        %#{$level} {
+          z-index: $depth;
+        }
+      }
+    }
+  } @else {
+    @each $level, $depth in $zindex-map {
+      @if $level  == "context" {
+        /*=====================\
+        |  #{map-get($zindex-map, $level)} z-index map 
+        \*====================*/
+      } @else {
+        .#{$level} {
+          z-index: $depth;
+        }
+      }
+    }
+  }
+}
+
+// END Library Source
+// =============================================================================
