@@ -31,11 +31,13 @@ And you're good to go.
 
 ## Using Zindex
 
-To get started using Zindex, check out the example file in the repo. If live demos are you thing, [check out the pen with my test cases].
+To get started using Zindex, [check out the example file][EX] in the repo. If live demos are you thing, [check out the pen with my test cases][CP].
 
 
 [JBSM]: http://www.smashingmagazine.com/2014/06/12/sassy-z-index-management-for-complex-layouts/ "Sassy Z-Index Management for Complex Layouts"
 [PW]: http://philipwalton.com/articles/what-no-one-told-you-about-z-index/ "What No One Told You About Z-Index"
 [CC]: http://css-tricks.com/handling-z-index/ "Handling z-index"
-[TB]: https://github.com/chatrjr/sass-zindex/tarball/master
-[Z]: https://github.com/User/repo/zipfile/master
+[TB]: https://github.com/chatrjr/sass-zindex/tarball/master "Zindex Tarball"
+[Z]: https://github.com/User/repo/zipfile/master "Zindex Zip"
+[EX]: https://github.com/chatrjr/sass-zindex/blob/master/zindex-example.scss "Zindex Usage Examples"
+[CP]: http://codepen.io/chatrjr/pen/JrLIt "Zindex Test Cases"
