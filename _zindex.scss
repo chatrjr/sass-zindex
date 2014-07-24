@@ -42,21 +42,19 @@
 @function zindex-set-stack-for($root, $depth-limit, $step) {
   $root-id: (context: $root);
   $map: ();
-
-  @if $root == body {
-    @for $enum from $depth-limit through 1 {
+  // Negative z-index
+  @for $enum from $depth-limit through 1 {
+    @if $root == body {
       $map: map-merge($map ,("zindex-sublevel-#{$enum}": -($step * $enum)));
-    }
-
-    @for $enum from 1 through $depth-limit {
-      $map: map-merge($map ,("zindex-level-#{$enum}": $step * $enum));
-    }
-  } @else {
-    @for $enum from $depth-limit through 1 {
+    } @else {
       $map: map-merge($map ,("#{$root}-sublevel-#{$enum}": -($step * $enum)));
     }
-
-    @for $enum from 1 through $depth-limit {
+  }
+  // Positive z-index
+  @for $enum from 1 through $depth-limit {
+    @if $root == body {
+      $map: map-merge($map ,("zindex-level-#{$enum}": $step * $enum));
+    } @else {
       $map: map-merge($map ,("#{$root}-level-#{$enum}": $step * $enum));
     }
   }
@@ -77,24 +75,16 @@
 // =========================================== */
 
 @mixin zindex-generate-stack($zindex-map, $placehold: false) {
-  @if $placehold {
-    @each $level, $depth in $zindex-map {
-      @if $level  == "context" {
-        /*=====================\
-        |  #{map-get($zindex-map, $level)} z-index map 
-        \*====================*/
-        } @else {
+  @each $level, $depth in $zindex-map {
+    @if $level  == context {
+      /*=====================\
+      |  #{map-get($zindex-map, $level)} z-index map 
+      \*====================*/
+    } @else {
+      @if $placehold {
         %#{$level} {
           z-index: $depth;
         }
-      }
-    }
-  } @else {
-    @each $level, $depth in $zindex-map {
-      @if $level  == "context" {
-        /*=====================\
-        |  #{map-get($zindex-map, $level)} z-index map 
-        \*====================*/
       } @else {
         .#{$level} {
           z-index: $depth;
