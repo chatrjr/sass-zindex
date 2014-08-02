@@ -41,4 +41,4 @@ To get started using Zindex, [check out the example file][EX] in the repo. If li
 [Z]: https://github.com/chatrjr/sass-zindex/zipball/master "Zindex Zip"
 [EX]: https://github.com/chatrjr/sass-zindex/blob/master/zindex-example.scss "Zindex Usage Examples"
 [CP]: http://codepen.io/chatrjr/pen/JrLIt "Zindex Test Cases"
-[CRJ Post]: http://chatrjr.name/2014/07/zindex-you-wily-bastard/
+[CRJ Post]: http://chatrjr.name/2014/07/zindex-you-wily-bastard/#solution-stepping
